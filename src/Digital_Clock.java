@@ -46,6 +46,8 @@ public class Digital_Clock extends JPanel implements ActionListener {
 	}
 
 	public void paint(Graphics g) {
+		
+		//create a paint method that draws to the screen
 		super.paint(g);
 		g.setFont(timeFont);
 		g.setColor(Color.BLUE);
@@ -54,6 +56,7 @@ public class Digital_Clock extends JPanel implements ActionListener {
 	}
 
 	private void setLabel() {
+		//set properties for the Header
 		JLabel Header = new JLabel();
 		Header.setText("LDot's Digital Clock");
 		Header.setFont(titleFont);
@@ -63,20 +66,25 @@ public class Digital_Clock extends JPanel implements ActionListener {
 	}
 
 	private void setButton() {
+		//instantiate buttons 
 		Button logBtn = new Button("Log Time");
 		Button quitBtn = new Button("Quit");
 		Button setAlarmBtn = new Button("Set Alarm");
 		Button changeBackgroundBtn = new Button("Change Background");
-
+		//set properties of buttons
 		quitBtn.setBounds(50, 400, 100, 50);
 		setAlarmBtn.setBounds(350, 400, 100, 50);
 		changeBackgroundBtn.setBounds(170, 300, 150, 50);
 		logBtn.setBounds(200, 400, 100, 50);
+		
+		//add buttons to panel
 		add(setAlarmBtn);
 		add(changeBackgroundBtn);
 		add(quitBtn);
 		add(logBtn);
-
+		
+		//add a new actionlistener to button and override the action performed method which is called when 
+		//the actionlistener picks up an event.
 		setAlarmBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -86,7 +94,8 @@ public class Digital_Clock extends JPanel implements ActionListener {
 			}
 
 		});
-
+		//add a new actionlistener to button and override the action performed method which is called when 
+		//the actionlistener picks up an event.
 		logBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -97,6 +106,8 @@ public class Digital_Clock extends JPanel implements ActionListener {
 			}
 
 		});
+		//add a new actionlistener to button and override the action performed method which is called when 
+		//the actionlistener picks up an event.
 		quitBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -110,6 +121,7 @@ public class Digital_Clock extends JPanel implements ActionListener {
 	}
 
 	private void setFrame() {
+		//instantiate frame and set properties of frame
 		frame = new JFrame();
 		frame.setTitle("LDot's Digital Clock");
 		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -121,8 +133,9 @@ public class Digital_Clock extends JPanel implements ActionListener {
 		frame.add(this);
 
 	}
-
+	
 	private void setAlarmFrame() {
+		//instantiate alarm_Window to open a new window when method is called
 		Alarm_Window alarmWindow = new Alarm_Window("Set An Alarm");
 		alarmWindow.setVisible(true);
 
@@ -130,6 +143,8 @@ public class Digital_Clock extends JPanel implements ActionListener {
 
 	}
 	private void checkTime() {
+		//needs work on
+		//TODO get alarm Working
 		ActionListener task2 = new ActionListener() {
 
 			@Override
@@ -145,14 +160,15 @@ public class Digital_Clock extends JPanel implements ActionListener {
 		
 	}
 	private void setTime() {
-
+		//stores the current time (HHMMSS) in this classes variables.
 		this.hours = LocalDateTime.now().getHour();
 		this.mins = LocalDateTime.now().getMinute();
 		this.seconds = LocalDateTime.now().getSecond();
 
 	}
-
+	//called Whenever Repaint is called.
 	private void update() {
+		//create action listener to perform
 		ActionListener task = new ActionListener() {
 
 			@Override
@@ -169,6 +185,7 @@ public class Digital_Clock extends JPanel implements ActionListener {
 	}
 
 	private void setString() {
+		//error handling and conditional statements used to ensure the right formatting of the string is done
 		if (seconds < 10) {
 			secondsString = "0";
 		} else {
@@ -186,7 +203,7 @@ public class Digital_Clock extends JPanel implements ActionListener {
 		} else {
 			hoursString = "";
 		}
-
+	
 		secondsString += String.valueOf(seconds);
 		minutesString += String.valueOf(mins);
 		hoursString += String.valueOf(hours);
